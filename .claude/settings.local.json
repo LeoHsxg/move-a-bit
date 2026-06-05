@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/yuchen/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/requesting-code-review/**)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npm view:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx skills:*)",
+      "Bash(git push:*)",
+      "Bash(npm list:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm root:*)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Read(//usr/**)",
+      "Read(//usr/local/**)",
+      "Bash(npm info:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:unpkg.com)",
+      "WebFetch(domain:firebase.google.com)",
+      "WebFetch(domain:app.unpkg.com)"
+    ]
+  }
+}
+
