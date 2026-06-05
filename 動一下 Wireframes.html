@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動一下 — Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; }
+  * { box-sizing: border-box; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+<script type="text/babel" src="screens-onboarding.jsx"></script>
+<script type="text/babel" src="screens-flow.jsx"></script>
+<script type="text/babel" src="screens-tabs.jsx"></script>
+
+<script type="text/babel">
+  const { useEffect, useState } = React;
+
+  const ABStyle = { borderRadius: 46, boxShadow: '0 20px 50px rgba(74,68,60,0.16), 0 0 0 1px rgba(74,68,60,0.06)' };
+
+  function App() {
+    // Gate render until fonts + components are present.
+    const [ready, setReady] = useState(false);
+    useEffect(() => {
+      const check = () => {
+        if (window.DesignCanvas && window.OnbWelcome && window.TabHome && window.FlowTimer) setReady(true);
+        else setTimeout(check, 40);
+      };
+      check();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {});
+    }, []);
+    if (!ready) return null;
+
+    return (
+      <DesignCanvas>
+        <DCSection id="onboarding" title="Onboarding · 首次使用" subtitle="輕鬆、溫暖、不填表格感 — 每頁只做一件事">
+          <DCArtboard id="01" label="01 · 歡迎" width={PHONE_W} height={PHONE_H} style={ABStyle}><OnbWelcome /></DCArtboard>
+          <DCArtboard id="02" label="02 · 選擇大目標" width={PHONE_W} height={PHONE_H} style={ABStyle}><OnbGoal /></DCArtboard>
+          <DCArtboard id="03" label="03 · 容易運動的時間" width={PHONE_W} height={PHONE_H} style={ABStyle}><OnbTime /></DCArtboard>
+          <DCArtboard id="04" label="04 · 預設運動地點" width={PHONE_W} height={PHONE_H} style={ABStyle}><OnbPlace /></DCArtboard>
+          <DCArtboard id="05" label="05 · 好友分享偏好" width={PHONE_W} height={PHONE_H} style={ABStyle}><OnbShare /></DCArtboard>
+        </DCSection>
+
+        <DCSection id="flow" title="任務執行流程" subtitle="App 最核心的互動 — 計時 → 三秒影片 → 慶祝出現">
+          <DCArtboard id="07" label="07 · 計時中" width={PHONE_W} height={PHONE_H} style={ABStyle}><FlowTimer /></DCArtboard>
+          <DCArtboard id="08" label="08 · 3 秒相機" width={PHONE_W} height={PHONE_H} style={ABStyle}><FlowCamera /></DCArtboard>
+          <DCArtboard id="09" label="09 · 完成 / 慶祝" width={PHONE_W} height={PHONE_H} style={ABStyle}><FlowDone /></DCArtboard>
+        </DCSection>
+
+        <DCSection id="main" title="主 App · 四個 Tab" subtitle="打開即看到今天要做什麼，資訊極度精簡">
+          <DCArtboard id="06" label="06 · 首頁（有任務）" width={PHONE_W} height={PHONE_H} style={ABStyle}><TabHome /></DCArtboard>
+          <DCArtboard id="10" label="10 · 紀錄（印記）" width={PHONE_W} height={PHONE_H} style={ABStyle}><TabRecord /></DCArtboard>
+          <DCArtboard id="11" label="11 · 好友" width={PHONE_W} height={PHONE_H} style={ABStyle}><TabFriends /></DCArtboard>
+          <DCArtboard id="12" label="12 · 我的" width={PHONE_W} height={PHONE_H} style={ABStyle}><TabMe /></DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
