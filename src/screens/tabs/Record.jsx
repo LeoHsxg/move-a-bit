@@ -41,7 +41,7 @@ export default function Record({ navigate }) {
             <span style={{ fontSize: 18, fontWeight: 700, color: C.ink }}>最近的樣子</span>
             <span style={{ fontSize: 14, color: C.clayDeep, fontWeight: 600 }}>查看全部</span>
           </div>
-          <div style={{ display: 'flex', gap: 13, padding: '0 26px', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', gap: 13, padding: '0 26px 4px', overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
             {vids.map(([d, col], i) => (
               <div key={i} style={{ flexShrink: 0, width: 96 }}>
                 <div style={{ width: 96, height: 128, borderRadius: 18, background: `linear-gradient(155deg, ${col}, #E9DFCB)`,

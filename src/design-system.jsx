@@ -60,7 +60,7 @@ export function HomeBar({ light = false }) {
 export function Screen({ children, bg = C.bg, light = false, time = '9:41', noStatus = false }) {
   return (
     <div style={{
-      width: PHONE_W, height: PHONE_H, background: bg, position: 'relative',
+      width: '100%', height: '100dvh', background: bg, position: 'relative',
       display: 'flex', flexDirection: 'column', overflow: 'hidden',
       fontFamily: FZ, color: C.ink, WebkitFontSmoothing: 'antialiased',
     }}>

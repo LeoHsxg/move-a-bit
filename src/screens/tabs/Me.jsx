@@ -35,7 +35,7 @@ export default function Me({ navigate }) {
 
         <div style={{ marginTop: 26 }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: C.ink2, padding: '0 26px 12px' }}>稱號</div>
-          <div style={{ display: 'flex', gap: 12, padding: '0 26px', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', gap: 12, padding: '0 26px 4px', overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
             {badges.map((b, i) => (
               <div key={i} style={{ flexShrink: 0, width: 104, padding: '16px 10px', borderRadius: 18, textAlign: 'center',
                 background: b.on ? (b.cur ? C.clayWash : C.card) : C.bgWarm,
