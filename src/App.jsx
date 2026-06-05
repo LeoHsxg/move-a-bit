@@ -1,14 +1,35 @@
-import { C, Screen, Btn, Icon } from './design-system'
+import { useState } from 'react'
+import Welcome from './screens/onboarding/Welcome'
+import Goal    from './screens/onboarding/Goal'
+import Time    from './screens/onboarding/Time'
+import Place   from './screens/onboarding/Place'
+import Share   from './screens/onboarding/Share'
+import Timer   from './screens/flow/Timer'
+import Camera  from './screens/flow/Camera'
+import Done    from './screens/flow/Done'
+import Home    from './screens/tabs/Home'
+import Record  from './screens/tabs/Record'
+import Friends from './screens/tabs/Friends'
+import Me      from './screens/tabs/Me'
+
+const SCREENS = {
+  'onboarding-welcome': Welcome,
+  'onboarding-goal':    Goal,
+  'onboarding-time':    Time,
+  'onboarding-place':   Place,
+  'onboarding-share':   Share,
+  timer:   Timer,
+  camera:  Camera,
+  done:    Done,
+  home:    Home,
+  record:  Record,
+  friends: Friends,
+  me:      Me,
+}
 
 export default function App() {
-  return (
-    <Screen>
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Icon.Leaf size={40} color={C.sage} />
-      </div>
-      <div style={{ padding: '0 28px 18px' }}>
-        <Btn onClick={() => {}}>設計系統 OK</Btn>
-      </div>
-    </Screen>
-  )
+  const [screen, setScreen] = useState('onboarding-welcome')
+  const navigate = (s) => setScreen(s)
+  const CurrentScreen = SCREENS[screen] ?? Home
+  return <CurrentScreen navigate={navigate} />
 }
